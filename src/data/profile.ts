@@ -3,42 +3,42 @@
    explorer, world) reads from these files. */
 
 export const site = {
-  url: 'https://0krk0.github.io/',
-  name: 'Rajesh Kumar Kona',
-  shortName: 'Rajesh',
-  role: 'Software Engineer',
-  focus: 'Enterprise Systems · Applied AI · Distributed Systems',
-  location: 'Edinburgh, United Kingdom',
-  title: 'Rajesh Kumar Kona · Software Engineer · AI · Systems',
+  url: 'https://github.com/20481A5450',
+  name: 'Zohaib Shaik',
+  shortName: 'Zohaib',
+  role: 'AI & Data Science Engineer',
+  focus: 'Artificial Intelligence · Data Science · Automotive Engineering',
+  location: 'Bangalore, Karnataka, India',
+  title: 'Zohaib Shaik · AI & Data Science Engineer',
   description:
-    'Software engineer with two years of enterprise engineering at Accenture, builder of LexoraAI (6.7M+ requests served), three peer-reviewed publications, now studying MSc Computer Science at the University of Edinburgh.',
-  email: 'konarajeshkumar011@gmail.com',
+    'AI and Data Science graduate with 1.2 years of experience at Marelli, a leading automotive company. Based in Bangalore, originally from Vijayawada, and focused on solving real-world data and intelligent system problems.',
+  email: 'shaikzohaibgec@gmail.com',
   links: {
-    github: 'https://github.com/0krk0',
-    linkedin: 'https://www.linkedin.com/in/rajesh-kumar-kona-649702240',
-    trailblazer: 'https://www.salesforce.com/trailblazer/rajeshkumarkrk',
-    lexora: 'https://lexoraai.online',
-    ownvoicz: 'https://ownvoicz.com',
+    github: 'https://github.com/20481A5450',
+    linkedin: 'https://www.linkedin.com/in/zohaib-shaik-1a8877216/',
+    trailblazer: '',
+    lexora: '',
+    ownvoicz: '',
   },
-  /** Put a PDF of your CV at public/Rajesh_Kumar_Kona_CV.pdf and set this to its path. */
+  /** Put a PDF of your CV at public/Zohaib_Shaik_CV.pdf and set this to its path. */
   cvPath: null as string | null,
 };
 
 /** What `whoami` prints and the world's info panel shows. Only stated facts. */
 export const identity = {
-  name: 'Rajesh Kumar Kona',
-  role: 'Software Engineer',
-  focusLine: 'Enterprise Systems / Applied AI',
-  location: 'Edinburgh, UK',
-  currently: ['MSc Computer Science', 'University of Edinburgh, 2026–2027'],
-  background: '2+ years of enterprise software engineering at Accenture',
-  focus: ['AI', 'Systems', 'Distributed computing', 'Security', 'Product engineering'],
+  name: 'Zohaib Shaik',
+  role: 'AI & Data Science Engineer',
+  focusLine: 'Artificial Intelligence / Data Science',
+  location: 'Bangalore, Karnataka, India',
+  currently: ['B.Tech in Artificial Intelligence and Data Science', 'Seshadri Rao Gudlavallu Engineering College'],
+  background: '1.2 years of experience at Marelli, a leading automotive company',
+  focus: ['AI', 'Data Science', 'Machine learning', 'Automotive innovation', 'Problem solving'],
 };
 
 /* ── Teaching ──────────────────────────────────────────────── */
 export const channels = [
-  { handle: '@KRK0010', name: 'DSA Daily', topic: 'Data structures and algorithms, from scratch.', url: 'https://www.youtube.com/@KRK0010', mode: 'Learn' },
-  { handle: '@KRK017', name: 'The Infinite Machine', topic: 'Computer science and technical explanations.', url: 'https://www.youtube.com/@KRK017', mode: 'Explain' },
-  { handle: '@EdinburghDiariesTelugu', name: 'UK Diaries Telugu', topic: 'The Edinburgh MSc journey, documented in Telugu.', url: 'https://www.youtube.com/@EdinburghDiariesTelugu', mode: 'Build' },
+  { handle: '@zohaibshaik', name: 'Learning Journey', topic: 'AI, data science and engineering learning updates.', url: 'https://www.linkedin.com/in/zohaib-shaik-1a8877216/', mode: 'Learn' },
+  { handle: '@zohaibshaik', name: 'Professional Profile', topic: 'Career updates and project work.', url: 'https://www.linkedin.com/in/zohaib-shaik-1a8877216/', mode: 'Build' },
+  { handle: '@zohaibshaik', name: 'Portfolio', topic: 'Work, projects and technical exploration.', url: 'https://github.com/20481A5450', mode: 'Explore' },
 ];
 
