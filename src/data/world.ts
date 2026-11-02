@@ -1,4 +1,4 @@
-/* Rajesh World: zones, exhibits and quests.
+/* Zohaib World: zones, exhibits and quests.
    Part of the portfolio's data layer. The world engine lays buildings and
    exhibits out automatically around each zone centre, so adding an exhibit
    here is enough for it to appear in the game. */
@@ -32,7 +32,7 @@ export interface Zone {
 }
 
 export const worldHub = {
-  name: 'RAJESH',
+  name: 'ZOHAIB',
   tagline: 'Central hub. Every path starts here.',
 };
 

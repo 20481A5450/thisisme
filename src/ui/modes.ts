@@ -33,7 +33,7 @@ export async function openMode(mode: Mode) {
       m.enterWorld(root, () => { mark('web'); if (location.hash === '#world') history.replaceState(null, '', location.pathname + location.search); });
     } catch {
       root.hidden = true;
-      toast('Rajesh World could not load. Check your connection and try again.', 3200);
+      toast('Zohaib World could not load. Check your connection and try again.', 3200);
       mark('web');
     }
   }

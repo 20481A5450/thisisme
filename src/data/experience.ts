@@ -2,8 +2,23 @@
    Part of the portfolio's data layer. Edit here; every view (web, terminal,
    explorer, world) reads from these files. */
 
-export const numbers = [
-  { value: 1.2, suffix: ' years', label: 'experience in industry', note: 'Marelli' },
+export interface StatNumber {
+  value: number;
+  suffix: string;
+  label: string;
+  note: string;
+  decimals?: number;
+}
+
+export interface PipelineStage {
+  stage: string;
+  text: string;
+  alert?: boolean;
+  ok?: boolean;
+}
+
+export const numbers: StatNumber[] = [
+  { value: 1.2, suffix: ' years', label: 'experience in industry', note: 'Marelli', decimals: 1 },
   { value: 1, suffix: '', label: 'current role', note: 'AI & Data Science focus' },
   { value: 0, suffix: '', label: 'major career shifts', note: 'focused on one company and one path' },
   { value: 1, suffix: '', label: 'core domain', note: 'AI, data science and automotive systems' },
@@ -11,7 +26,7 @@ export const numbers = [
   { value: 0, suffix: '', label: 'published research yet', note: 'portfolio under construction' },
 ];
 
-export const pipeline = [
+export const pipeline: PipelineStage[] = [
   { stage: 'Learn', text: 'Build a strong foundation in AI, data and engineering fundamentals.' },
   { stage: 'Apply', text: 'Work on practical business problems in an industrial environment.' },
   { stage: 'Build', text: 'Translate data-driven learning into impactful solutions.' },

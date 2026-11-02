@@ -20,7 +20,7 @@ export const commandList: CommandInfo[] = [
   { name: 'youtube', about: 'Go to the teaching channels', group: 'Navigate' },
   { name: 'contact', about: 'How to reach me', group: 'Navigate' },
   { name: 'github', about: 'Open github.com/0krk0', group: 'Navigate' },
-  { name: 'world', about: 'Enter Rajesh World', group: 'Modes' },
+  { name: 'world', about: 'Enter Zohaib World', group: 'Modes' },
   { name: 'explorer', about: 'Browse the portfolio as a repository', group: 'Modes' },
   { name: 'web', about: 'Back to the web page', group: 'Modes' },
   { name: 'ls', args: '[dir]', about: 'List the portfolio tree', group: 'Shell' },

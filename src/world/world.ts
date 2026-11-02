@@ -1,4 +1,4 @@
-/* Rajesh World: a small isometric island of the portfolio.
+/* Zohaib World: a small isometric island of the portfolio.
    Plain Canvas 2D, no engine and no 3D library. It loads only when someone
    opens it (#world), so the main site stays fast. */
 
@@ -121,7 +121,7 @@ const awardKind = ['Client recognition', 'Workplace award', 'Academic standing',
 export function enterWorld(root: HTMLElement, onExit: () => void) {
   const test = document.createElement('canvas');
   if (!test.getContext || !test.getContext('2d')) {
-    root.innerHTML = `<div class="w-fallback"><p class="h3">Rajesh World is unavailable on this device.</p><button type="button" class="btn btn-solid" data-w-exit>Explore the portfolio</button></div>`;
+    root.innerHTML = `<div class="w-fallback"><p class="h3">Zohaib World is unavailable on this device.</p><button type="button" class="btn btn-solid" data-w-exit>Explore the portfolio</button></div>`;
     $('[data-w-exit]', root).addEventListener('click', () => { root.hidden = true; onExit(); });
     return;
   }
@@ -132,7 +132,7 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
   let P = readPalette();
 
   root.innerHTML = `
-    <canvas class="w-canvas" tabindex="0" aria-label="Rajesh World. Move with W A S D or the arrow keys, press E to explore, M for the map, Escape for the menu."></canvas>
+    <canvas class="w-canvas" tabindex="0" aria-label="Zohaib World. Move with W A S D or the arrow keys, press E to explore, M for the map, Escape for the menu."></canvas>
     <div class="w-hud">
       <div class="w-top-left">
         <p class="w-zone"><span class="dot" aria-hidden="true"></span><span data-w-zone>${worldHub.name}</span></p>
@@ -265,11 +265,11 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
     const id = ref.id;
     const cats = ['AI', 'Cloud', 'Salesforce', 'Programming', 'Web', 'Other'].map(c => `${c}: ${credentials.filter(x => x.cat === c).length}`);
     const byId: Record<string, [string, string, string, Btn[], Lane?]> = {
-      impact: ['enterprise · Accenture', 'Production terminal', `<div class="w-metrics">${metric('170+', 'production contributions')}${metric('20+', 'critical defects resolved')}${metric('~21 mo', 'to promotion')}</div><p>Software Engineer (Salesforce Developer), Aug 2024 – Sep 2026. Enterprise CRM systems and integrations under strict SLAs.</p>`, [{ label: 'View experience', goto: 'work', solid: true }], 'enterprise'],
+      impact: ['enterprise · Marelli', 'Production terminal', `<div class="w-metrics">${metric('170+', 'production contributions')}${metric('20+', 'critical defects resolved')}${metric('~21 mo', 'to promotion')}</div><p>Associate Engineer (Product Development), Jul 2025 – Present. Enterprise CRM systems and integrations under strict SLAs.</p>`, [{ label: 'View experience', goto: 'work', solid: true }], 'enterprise'],
       crm: ['enterprise · building', 'CRM Systems', '<p>Enterprise CRM solutions in Apex, Lightning Web Components, SOQL and Flow, cutting manual processing.</p>', [{ label: 'View experience', goto: 'work', solid: true }], 'enterprise'],
       integrations: ['enterprise · building', 'API Integrations', '<p>Secure REST API integrations for reliable two-way data exchange between core systems and third-party enterprise services.</p>', [{ label: 'View experience', goto: 'work', solid: true }], 'enterprise'],
       quality: ['enterprise · case study', 'The bug that never reached production', '<p>Before a release, I identified a critical defect, found its cause and resolved it. The client avoided a significant business loss and the onshore team formally recognised the catch.</p><p class="w-note">Client details stay confidential.</p>', [{ label: 'Replay the case study', run: 'pipe-go', solid: true }], 'enterprise'],
-      tss: ['enterprise · Jun–Jul 2023', 'Before Accenture', '<p>Full-stack engineer intern at Tech Stalwart Solution. Improved page-load speed by roughly 15% with React.js and co-deployed the company website on AWS.</p>', [{ label: 'View experience', goto: 'work' }], 'enterprise'],
+      tss: ['enterprise · May 2024 – Apr 2025', 'Before ', '<p>Backend Engineer intern at Smollan(For Google). Improved page-load speed by roughly 15% with React.js and co-deployed the company website on AWS.</p>', [{ label: 'View experience', goto: 'work' }], 'enterprise'],
       vault: ['systems · vault', 'Certification Vault', `<p>${credentials.length} credentials with IDs and verify links.</p>${list(cats)}`, [{ label: 'Open the credential vault', goto: 'credentials', solid: true }], 'systems'],
       msc: ['main · HEAD', `${msc.programme}`, `<p>${esc(msc.university)}, ${esc(msc.years)}.</p><div class="w-metrics">${metric('AI', 'area')}${metric('ML', 'area')}${metric('Systems', 'area')}${metric('Research', 'area')}</div>`, [{ label: 'Open MSc section', goto: 'now', solid: true }]],
       modules: ['main · this year', 'Modules', list(msc.modules.map(m => `${m.code} · ${m.name} (${m.term})`)), [{ label: 'Open MSc section', goto: 'now', solid: true }]],
@@ -311,7 +311,7 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
     for (let i = 0; i < 64; i++) { const a = i / 64 * Math.PI * 2, r = islandR(a); const s = iso(C + Math.cos(a) * r, C + Math.sin(a) * r); outline.push(`${s.sx.toFixed(0)},${s.sy.toFixed(0)}`); }
     const me = iso(player.x, player.y), hub = iso(C, C);
     const vb = `${-26 * TW / 2} ${iso(C, C).sy - 30 * TH / 2 - 60} ${52 * TW / 2} ${60 * TH / 2 + 80}`;
-    return `<div class="w-p-head"><p class="eyebrow" data-lane="main"><span class="dot"></span>press a location to travel · keys 1–9</p><h2 class="w-p-title" id="w-p-title">Rajesh World</h2></div>
+    return `<div class="w-p-head"><p class="eyebrow" data-lane="main"><span class="dot"></span>press a location to travel · keys 1–9</p><h2 class="w-p-title" id="w-p-title">Zohaib World</h2></div>
       <div class="w-mapgrid">
         <svg viewBox="${vb}" aria-hidden="true"><polygon points="${outline.join(' ')}" class="wm-land"/>
           ${pts.map(({ z }) => `<polyline points="${z.road.map(r => { const q = iso(r.x, r.y); return `${q.sx.toFixed(0)},${q.sy.toFixed(0)}`; }).join(' ')}" class="wm-path"/>`).join('')}
@@ -343,7 +343,7 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
   }
 
   function menuHtml() {
-    return `<div class="w-p-head"><p class="eyebrow" data-lane="main"><span class="dot"></span>paused</p><h2 class="w-p-title" id="w-p-title">Rajesh World</h2></div>
+    return `<div class="w-p-head"><p class="eyebrow" data-lane="main"><span class="dot"></span>paused</p><h2 class="w-p-title" id="w-p-title">Zohaib World</h2></div>
       <div class="w-menu">
         <button type="button" class="btn btn-solid" data-w-close>Resume</button>
         <button type="button" class="btn btn-line" data-w-open="map">Map</button>
@@ -464,7 +464,7 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
     if (dist(player, secretSpot) < 1.5) best = { id: 'secret' };
     if (best !== near) {
       near = best;
-      const label = !near ? '' : near.id === 'hub' ? `${worldHub.name} · who is Rajesh?` : near.id === 'secret' ? secretSpot.label : (near as Placed).label;
+      const label = !near ? '' : near.id === 'hub' ? `${worldHub.name} · who is Zohaib?` : near.id === 'secret' ? secretSpot.label : (near as Placed).label;
       promptEl.hidden = !near;
       if (near) promptEl.innerHTML = `<kbd>${coarse ? 'Tap' : 'E'}</kbd> ${esc(coarse ? 'Explore' : 'Explore')} · ${esc(label)}`;
       const eb = root.querySelector<HTMLElement>('[data-w-e]'); if (eb) eb.hidden = !near;
@@ -704,11 +704,11 @@ export function enterWorld(root: HTMLElement, onExit: () => void) {
     const intro = $('[data-w-intro]', root);
     intro.hidden = false; paused = true;
     const lines = ['ENTERPRISE SYSTEMS', 'AI', 'RESEARCH', 'PRODUCTS', 'OPEN SOURCE'];
-    intro.innerHTML = `${worldAssets.introBackdrop ? `<img class="w-intro-bg" src="${worldAssets.introBackdrop}" alt="">` : ''}<div class="w-intro-in"><p class="w-i-name">RAJESH KUMAR KONA</p><p class="w-i-sys">SYSTEM INITIALIZING<span class="w-i-dots"></span></p><ul>${lines.map((l, i) => `<li style="--i:${i}"><span>${l}</span><b>ok</b></li>`).join('')}</ul><p class="w-i-welcome">WELCOME TO MY WORLD.</p></div><button type="button" class="btn btn-line sm w-skip">Skip</button>`;
+    intro.innerHTML = `${worldAssets.introBackdrop ? `<img class="w-intro-bg" src="${worldAssets.introBackdrop}" alt="">` : ''}<div class="w-intro-in"><p class="w-i-name">ZOHAIB SHAIK</p><p class="w-i-sys">SYSTEM INITIALIZING<span class="w-i-dots"></span></p><ul>${lines.map((l, i) => `<li style="--i:${i}"><span>${l}</span><b>ok</b></li>`).join('')}</ul><p class="w-i-welcome">WELCOME TO MY WORLD.</p></div><button type="button" class="btn btn-line sm w-skip">Skip</button>`;
     const done = () => { if (intro.hidden) return; intro.hidden = true; paused = false; prog.intro = true; saveProgress(prog); canvas.focus(); };
     $('.w-skip', intro).addEventListener('click', done);
     $<HTMLButtonElement>('.w-skip', intro).focus();
     setTimeout(done, 4600);
   }
-  toast(coarse ? 'Rajesh World · drag the pad to move, tap Explore near anything' : 'Rajesh World · WASD to move, E to explore, M for the map', 2600);
+  toast(coarse ? 'Zohaib World · drag the pad to move, tap Explore near anything' : 'Zohaib World · WASD to move, E to explore, M for the map', 2600);
 }

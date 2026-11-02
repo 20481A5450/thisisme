@@ -35,7 +35,7 @@ function view(n: TNode) {
   let body = '';
   if (n.dir) {
     const last = [...commits].sort((a, b) => b.t - a.t).find(c => !c.future && !c.wip)!;
-    body += `<div class="xp-list"><div class="xp-list-head"><span class="xp-av">rk</span><b>Rajesh Kumar Kona</b> <span>${esc(last.title)}</span><code>${hash(last.id + last.title)}</code></div>
+    body += `<div class="xp-list"><div class="xp-list-head"><span class="xp-av">zs</span><b>Zohaib Shaik</b> <span>${esc(last.title)}</span><code>${hash(last.id + last.title)}</code></div>
       <ul>${n.path ? `<li><button type="button" data-path="${esc(n.path.split('/').slice(0, -1).join('/'))}">${icon({ dir: true } as TNode)}<span>..</span></button></li>` : ''}${(n.children ?? []).map(c => `<li><button type="button" data-path="${esc(c.path)}">${icon(c)}<span>${esc(c.name)}</span></button><span class="xp-desc">${esc(c.dir ? (readmeOf(c)?.doc?.title ?? `${c.children?.length ?? 0} items`) : c.doc?.title ?? '')}</span></li>`).join('')}</ul></div>`;
     const r = readmeOf(n);
     if (r?.doc) body += `<div class="xp-readme"><p class="xp-file-h">${icon(r)} README.md</p>${docToHtml(r.doc)}</div>`;
