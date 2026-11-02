@@ -389,7 +389,7 @@ Object.assign(actions, {
   sem1: () => { go('now'); after(500, () => $$<HTMLButtonElement>('.credit[data-term="Semester 1"]')[0]?.click()); },
   theme: () => toggleTheme(),
   'copy-email': () => copy(site.email, 'Email copied'),
-  secret: () => toast('It is somewhere in Rajesh World, off the map. The terminal knows a sudo command for it too.', 4200),
+  secret: () => toast('It is somewhere in Zohaib World, off the map. The terminal knows a sudo command for it too.', 4200),
 });
 const wrapGo = (id: string, fn: () => void) => () => { go(id); after(450, fn); };
 actions['pipe-go'] = wrapGo('work', () => actions['pipe']());
@@ -426,6 +426,7 @@ const cmds: Cmd[] = [
   { label: 'YouTube', kind: 'Section', run: goCmd('explain'), keys: 'teaching videos channel' },
   { label: 'Everything you can do here', kind: 'Section', run: goCmd('interactions'), keys: 'interaction directory buttons' },
   { label: 'Contact', kind: 'Section', run: goCmd('contact'), keys: 'email' },
+  { label: 'Enter Zohaib World', kind: 'Mode', run: () => openMode('world'), keys: 'game explore island play' },
   { label: 'Enter Rajesh World', kind: 'Mode', run: () => openMode('world'), keys: 'game explore island play' },
   { label: 'Rajesh World in first person (3D)', kind: 'Mode', run: () => openWorld('1p'), keys: 'game 3d first person walk fps building' },
   { label: 'Rajesh World in third person (3D)', kind: 'Mode', run: () => openWorld('3p'), keys: 'game 3d third person avatar walk' },

@@ -60,7 +60,7 @@ export const msc: { programme: string; university: string; years: string; totalC
 
 
 export const btech = {
-  degree: 'BTech, Computer Science & Engineering', school: 'Vasireddy Venkatadri Institute of Technology', place: 'Guntur, India', period: 'Sep 2020 – Jul 2024',
-  specialisation: 'IoT, cyber security including blockchain technology', gpa: '8.65/10', rank: '2 of 66 (top 1%)',
-  coursework: ['Data structures', 'Design & analysis of algorithms', 'Operating systems', 'Computer networks', 'DBMS', 'Machine learning', 'Big data analytics', 'Cryptography & network security', 'Cloud computing', 'Blockchain technologies'],
+  degree: 'B.Tech, Artificial Intelligence and Data Science', school: 'Seshadri Rao Gudlavallu Engineering College', place: 'Gudlavalleru, Andhra Pradesh, India', period: '2020 – 2024',
+  specialisation: 'Artificial Intelligence, Data Science and emerging intelligent systems', gpa: 'Not specified', rank: 'Not specified',
+  coursework: ['Artificial intelligence', 'Data science', 'Machine learning', 'Statistics and analytics', 'Programming', 'Data structures', 'Database systems', 'Engineering fundamentals'],
 };

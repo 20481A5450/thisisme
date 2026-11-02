@@ -18,7 +18,7 @@ const ok = (s: string) => `<span class="t-ok">${s}</span>`;
 const dim = (s: string) => `<span class="t-dim">${s}</span>`;
 const cmdBtn = (c: string, label = c) => `<button type="button" class="t-run" data-term-cmd="${esc(c)}">${esc(label)}</button>`;
 const link = (href: string, t: string) => `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(t)}</a>`;
-const prompt = () => `rajesh@portfolio:${cwd ? '~/' + cwd : '~'}$`;
+const prompt = () => `zohaib@portfolio:${cwd ? '~/' + cwd : '~'}$`;
 
 /** Close the terminal, then do something on the page. */
 function leave(fn: () => void, msg: string) {
@@ -144,7 +144,7 @@ export function runCommand(cmdline: string) {
     case 'git':
       if (args[0] === 'log') [...commits].sort((x, y) => y.t - x.t).slice(0, 14).forEach(c => line(`${hi_(esc(c.when.padEnd(18)))}${esc(c.title)}`));
       else if (args[0] === 'status') line(`On branch main\nYour branch is ahead of 'origin/btech' by 2 years of production.\n\nChanges not staged for commit:\n\t${hi_('modified:   projects/atlas/')}\n\t${hi_('modified:   projects/ownvoicz/')}`);
-      else if (args[0] === 'blame') line('Every line: Rajesh Kumar Kona.');
+      else if (args[0] === 'blame') line('Every line: Zohaib Shaik.');
       else if (args[0] === 'branch') line(['main', 'systems', 'enterprise', 'ai', 'research'].map(b => (b === 'main' ? '* ' : '  ') + b).join('\n'));
       else line(`try: ${cmdBtn('git log')} ${cmdBtn('git status')} ${cmdBtn('git branch')}`);
       break;
@@ -171,7 +171,7 @@ export function runCommand(cmdline: string) {
         if (store.get('world-secret') === '1') line(`${ok('[sudo] unlocked.')}\nYou found the old build server, so here is the note it was keeping:\n\n“Ship small, measure honestly, and write down what you learned.”\n\nThanks for exploring this far. ${link('mailto:' + site.email, 'Say hello')}.`);
         else line('sudo: unlock needs a key. An old machine somewhere in the world still has one.');
       }
-      else line('rajesh is not in the sudoers file. This incident will be reported.');
+      else line('zohaib is not in the sudoers file. This incident will be reported.');
       break;
     }
     case 'rm': line('Nice try. Production data stays.'); break;
@@ -223,7 +223,7 @@ export function initTerminal() {
 }
 
 export function openTerminal(cmd?: string) {
-  if (!out.innerHTML) { line(`${ok('Welcome to rajesh@portfolio.')} This shell really navigates the site.`); line(`Start with ${cmdBtn('help')}, ${cmdBtn('whoami')} or ${cmdBtn('projects')}.\n`); }
+  if (!out.innerHTML) { line(`${ok('Welcome to zohaib@portfolio.')} This shell really navigates the site.`); line(`Start with ${cmdBtn('help')}, ${cmdBtn('whoami')} or ${cmdBtn('projects')}.\n`); }
   openModal(term(), document.activeElement as HTMLElement, '#term-in');
   if (cmd) runCommand(cmd);
 }

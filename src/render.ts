@@ -37,7 +37,7 @@ const curve = (x1: number, y1: number, x2: number, y2: number) => {
 };
 
 const labels: Record<string, string> = {
-  btech: 'BTech, VVIT', graduate: 'Rank 2 / 66', accenture: 'Accenture', lexora: 'LexoraAI',
+  btech: 'BTech, SRGEC', graduate: 'Rank 2 / 66', accenture: 'Accenture', lexora: 'LexoraAI',
   edinburgh: 'HEAD → Edinburgh', atlas: 'Atlas', microsoft: '3 × Microsoft', 'paper-fund': 'IJCRT',
   'paper-blockchain': 'IRJET', promotion: 'Promoted', dissertation: 'Dissertation', 'ai-for-everyone': 'first AI course',
 };
@@ -134,7 +134,7 @@ function nav() {
   const items = [['work', 'Work'], ['lexora', 'Products'], ['research', 'Research'], ['now', 'MSc'], ['credentials', 'Credentials']];
   return `<a class="skip" href="#main">Skip to content</a>
   <header class="topbar">
-    <a class="mark" href="#top" aria-label="Rajesh Kumar Kona, home"><span class="mark-glyph" aria-hidden="true">rkk</span><span class="mark-path">~/rajesh</span></a>
+    <a class="mark" href="#top" aria-label="Zohaib Shaik, home"><span class="mark-glyph" aria-hidden="true">zs</span><span class="mark-path">~/zohaib</span></a>
     <nav aria-label="Sections"><ul class="nav-links">${items.map(([h, l]) => `<li><a href="#${h}">${l}</a></li>`).join('')}</ul></nav>
     <nav class="modes" aria-label="Ways to explore">
       <a href="#top" data-mode-link="web" aria-current="true">Web</a>
@@ -159,9 +159,9 @@ function nav() {
 function hero() {
   return `<section class="hero" id="top" aria-labelledby="hero-name">
     <div class="wrap hero-head">
-      <p class="prompt hero-prompt"><span class="p-user">rajesh@edinburgh</span><span class="p-sep">:</span><span class="p-path">~</span><span class="p-sign">$</span> git log --graph --all</p>
-      <h1 id="hero-name" class="hero-name">Rajesh Kumar Kona</h1>
-      <p class="hero-lede">Software engineer. Two years building enterprise systems at Accenture, an AI product that has served 6.7 million requests, and three published papers. Now studying MSc Computer Science at the University of Edinburgh, and still building.</p>
+      <p class="prompt hero-prompt"><span class="p-user">zohaib@portfolio</span><span class="p-sep">:</span><span class="p-path">~</span><span class="p-sign">$</span> git log --graph --all</p>
+      <h1 id="hero-name" class="hero-name">Zohaib Shaik</h1>
+      <p class="hero-lede">Software engineer. Two years of building enterprise systems at Marelli & Smollan, a Backend product that has served 10 million records per an hour, and published papers. Now working as an Associate Engineer at Marelli, and still building.</p>
       <div class="hero-cta">
         <a class="btn btn-solid" href="#work">Explore the work <span aria-hidden="true">↓</span></a>
         ${ext(site.links.github, 'GitHub', 'btn btn-line')}
@@ -201,7 +201,7 @@ function work() {
       <div class="split">
         <div>
           <h2 id="work-h" class="h2">Production work, under SLA</h2>
-          <p class="role"><strong>Software Engineer (Salesforce Developer)</strong><span>Accenture · Bengaluru, India</span></p>
+          <p class="role"><strong>Associate Engineer (Product Development)</strong><span>Marelli · Bengaluru, India</span></p>
           <ul class="bullets">${workBullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
         </div>
         <dl class="impact">
@@ -956,7 +956,7 @@ function voicePassportSection() {
 
 function interactions() {
   const groups: [string, [string, string][]][] = [
-    ['Ways in', [['world', 'Enter Rajesh World'], ['terminal', 'Open the terminal'], ['explorer', 'Browse as a repository'], ['palette', 'Command palette (⌘K)']]],
+    ['Ways in', [['world', 'Enter Zohaib World'], ['terminal', 'Open the terminal'], ['explorer', 'Browse as a repository'], ['palette', 'Command palette (⌘K)']]],
     ['Career graph', [['checkout-ai', 'git checkout ai'], ['checkout-enterprise', 'git checkout enterprise'], ['head', 'Jump to HEAD']]],
     ['Case studies', [['pipe', 'Replay the pre-release catch'], ['atlas-high', 'Run a high-risk Atlas task'], ['flow-server', 'Send a file to a server feature'], ['vp-approve', 'Approve a Voice Passport request'], ['vtv-plug', 'Pull the plug on a render'], ['vtv-nvenc', 'See why NVENC caps at 1.3×'], ['saa-prod', 'Send a deployment to a production org'], ['cos-fill', 'Watch Career OS fill a form'], ['aut-v11', 'See the look-ahead AuTrad caught in itself']]],
     ['Evidence', [['trace', 'Trace “Solidity” to its evidence'], ['vault-azure', 'Search the vault for Azure'], ['paper', 'Open a paper summary'], ['vtv-paper', 'Read the rendering paper (PDF)'], ['sem1', 'Highlight this term’s modules']]],
@@ -994,9 +994,9 @@ function overlays() {
   <div class="modal term" id="term" hidden>
     <div class="modal-back" data-close></div>
     <div class="modal-card term-card" role="dialog" aria-modal="true" aria-label="Terminal">
-      <div class="term-top"><span></span><span></span><span></span><p>rajesh@portfolio: ~</p><button type="button" class="modal-x" data-close aria-label="Close terminal">×</button></div>
+      <div class="term-top"><span></span><span></span><span></span><p>zohaib@portfolio: ~</p><button type="button" class="modal-x" data-close aria-label="Close terminal">×</button></div>
       <div class="term-out" id="term-out" aria-live="polite"></div>
-      <label class="term-line"><span class="p-user">rajesh@portfolio</span><span class="p-sep">:</span><span class="p-path">~</span><span class="p-sign">$</span><span class="sr">Command</span><input id="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="send"></label>
+      <label class="term-line"><span class="p-user">zohaib@portfolio</span><span class="p-sep">:</span><span class="p-path">~</span><span class="p-sign">$</span><span class="sr">Command</span><input id="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="send"></label>
       <div class="term-chips" aria-label="Suggested commands">${['help', 'whoami', 'projects', 'open lexora', 'open voicepassport', 'neofetch', 'git log', 'world'].map(c => `<button type="button" data-term-cmd="${c}">${c}</button>`).join('')}</div>
     </div>
   </div>
@@ -1017,7 +1017,7 @@ function overlays() {
     </div>
   </div>
   <div class="mode-overlay" id="explorer" hidden role="dialog" aria-modal="true" aria-label="Repository explorer"></div>
-  <div class="world-root" id="world-root" hidden role="dialog" aria-modal="true" aria-label="Rajesh World"></div>
+  <div class="world-root" id="world-root" hidden role="dialog" aria-modal="true" aria-label="Zohaib World"></div>
   <div class="toast" role="status" aria-live="polite" hidden></div>`;
 }
 
