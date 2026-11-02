@@ -69,6 +69,27 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'saa', cmd: 'saa', name: 'Salesforce AI Agent', lane: 'ai', status: 'in-development', statusLabel: 'Open source · MIT · on GitHub', period: '2026', anchor: 'saa',
+    summary: 'An open-source agent that works on a real Salesforce org from plain language: inspect schema, query data, change records, build fields and Flows, write and test Apex, and take a release through validate, diff, approve, deploy and verify. The model proposes. A deterministic risk engine outside the model decides, and risky changes wait for the right people.',
+    facts: ['52 tools across Salesforce, Jira, GitHub and Bitbucket; 20 of them change something', 'Risk engine outside the model: environment, object sensitivity, blast radius and production posture decide, not the prompt', 'Approvals bound to the exact change: a hash of tool and arguments, an org-state fingerprint, expiry, quorum and separation of duties', 'Durable runs: worker queue, atomic claims, stale-run reclaim and a replayable event stream', 'Bring your own model per project: 10 providers; a rejected key never fails over to another vendor', '687 automated tests; about 33,000 lines of Python application code and 12,000 lines of tests'],
+    tech: ['Python 3.11', 'FastAPI', 'SQLAlchemy 2 (async)', 'Alembic', 'PostgreSQL / SQLite', 'Next.js 15', 'React 19', 'TypeScript', 'Salesforce REST, Metadata, Tooling, Bulk 2.0', 'OAuth 2.0 + PKCE', 'OIDC · SCIM 2.0', 'MCP', 'Docker Compose'],
+    links: [{ label: 'GitHub', url: 'https://github.com/0KRK0/SAA-Salesforce-Agent' }],
+  },
+  {
+    id: 'careeros', cmd: 'careeros', name: 'Career OS', lane: 'ai', status: 'in-development', statusLabel: 'Open source · MIT · on GitHub', period: 'Sep – Oct 2026', anchor: 'careeros',
+    summary: 'A local, open-source job-hunting system. It finds jobs, internships, fellowships and scholarships worldwide, scores them, drafts the cover letter, and fills in the application in a real browser. Then it stops: I read every answer and click Submit myself. It tracks replies from Gmail and teaches me for every role I am aiming at.',
+    facts: ['Job discovery on the public APIs of Greenhouse, Lever, Ashby, SmartRecruiters, Workable and Workday, plus four open feeds; 112 preset companies', 'Autofill that colour-codes every field (my answer, AI draft, needs me), never clicks Submit, and ticks consent boxes only when I say so', 'The AI agents run on my own Claude, ChatGPT or Gemini subscription through their command-line apps; API keys are removed, so there are no API bills', 'Reads Gmail over IMAP without changing anything, and writes only follow-up drafts after 14 quiet days', '16 learning tracks, 78 modules, an AI tutor and tests with Python problems run locally', 'About 6,800 lines of Python (FastAPI, SQLite, Playwright); 72 API routes, 16 tables'],
+    tech: ['Python', 'FastAPI', 'SQLite (WAL)', 'Playwright', 'httpx', 'JavaScript', 'IMAP', 'Claude Code / Codex / Gemini CLI', 'PowerShell'],
+    links: [{ label: 'GitHub', url: 'https://github.com/0KRK0/Career-OS' }],
+  },
+  {
+    id: 'autrad', cmd: 'autrad', name: 'AuTrad', lane: 'research', status: 'in-progress', statusLabel: 'Research platform · paper trading only · on GitHub', period: 'Sep – Oct 2026', anchor: 'autrad',
+    summary: 'A research platform for testing trading ideas on Indian equities and crypto under strict rules against fooling myself. Every study is pre-registered and hashed before any result, every trial is logged, failures included, and an idea must clear statistical, after-cost, after-tax, capacity and forward-test gates. So far none has, and the platform says so.',
+    facts: ['11 pre-registered research versions; 114 experiment results in an append-only ledger', 'Point-in-time NSE and BSE data, XBRL filings and the Binance public archive, with Indian costs and tax in every result', 'Holm correction, deflated Sharpe, probability of backtest overfitting, walk-forward tests and, from v0.7, a seven-step capital-efficiency gate', 'Proven alpha so far: 0. One frozen rule runs as a paper-only forward test from 1 Oct 2026', 'About 22,000 lines of Python and 222 automated tests; FastAPI, Postgres/TimescaleDB and React scaffold'],
+    tech: ['Python', 'pandas', 'NumPy', 'SciPy', 'FastAPI', 'PostgreSQL / TimescaleDB', 'Redis', 'React', 'TypeScript', 'Docker'],
+    links: [{ label: 'GitHub', url: 'https://github.com/0KRK0/AuTrad' }],
+  },
+  {
     id: 'fund', cmd: 'fund', name: 'Blockchain-Based Fund Management System', lane: 'systems', status: 'archive', statusLabel: 'BTech · published 2024', period: 'BTech', anchor: 'archive',
     summary: 'Solidity smart contracts for decentralised fund allocation, with consensus-validation mechanisms and a transaction-transparency monitoring interface.',
     facts: ['Also published as a paper in IJCRT'], tech: ['Solidity', 'Smart contracts'], links: [],
@@ -207,9 +228,10 @@ export const vtv = {
     { title: 'Profile first', text: 'On a real 1080p timeline, composing frames took 77% of render time and x264 took 23%. Text was only 0.7% of composition. The cost was moving full-frame buffers around.' },
     { title: 'Remove wasted work', text: 'Most of that buffer work was redundant. Removing it took composition from 12 to 26 frames a second on the same hardware.' },
     { title: 'Segment the render', text: 'Twelve-second segments, cut on exact frame indices. A finished segment is a file whose name says so, so a crash loses at most one segment, and segments run in parallel across processes.' },
-    { title: 'Skip hardware encoding', text: 'NVENC replaces only the 23%. Amdahl caps that at 1.3×, and consumer drivers limit concurrent encode sessions, which fights the process pool.' },
+    { title: 'Skip hardware encoding (for now)', text: 'NVENC replaces only the 23%. While composition is most of the work, Amdahl caps that at 1.3×.' },
     { title: 'Move only resampling to the GPU', text: 'An OpenGL 3.3 painter does the expensive, parallel part: Lanczos-3 resampling of photographs. Text, overlays and transitions stay on the CPU reference so they match exactly.' },
     { title: 'Prove it matches', text: 'No channel may differ from the CPU by more than 2, and no pixel may exceed that. The first run on a GTX 1650 passed 15 of 23 scenes; after four fixes, 23 of 23.' },
+    { title: 'Measure it, then profile again', text: 'On my GTX 1650 laptop at 1080p, photographs compose 11.7× faster on the GPU (3.7 to 43.3 fps). That makes x264 the bigger cost for photo-heavy videos, so hardware encoding is worth measuring now.' },
   ],
   defects: [
     { n: 1, what: 'Framebuffer read bottom-up', evidence: 'A plate at rows 11–50 differed across rows 11–169: itself and its mirror.' },
@@ -227,13 +249,20 @@ export const vtv = {
     { id: 'wipe-50', label: 'Wipe 50%', before: { worst: 23, over: 339 }, after: { worst: 2, mad: 0.054 } },
     { id: 'push-50', label: 'Push 50%', before: { worst: 23, over: 329 }, after: { worst: 2, mad: 0.055 } },
   ],
+  /** E5, 1080p, GTX 1650 laptop: paper/experiments/e5-gtx1650-paper-bench.json */
+  speed: [
+    { workload: 'Photographs', cpu: 3.7, gpu: 43.3, ratio: '11.73×', x264: 24.2 },
+    { workload: 'Transitions', cpu: 2.1, gpu: 16.6, ratio: '7.71×', x264: 26.8 },
+    { workload: 'Mixed', cpu: 7.2, gpu: 21.4, ratio: '2.99×', x264: 22.6 },
+    { workload: 'Typography', cpu: 30.6, gpu: 28.8, ratio: '0.94×', x264: 48.4 },
+  ],
   longRuns: [
     { video: '120 min', render: '142.0 min', segments: 600, gpu: 598, rss: '465 MB', slope: '−0.095 MB/segment', vram: '505 MB', error: '0.00 s' },
     { video: '240 min', render: '341.4 min', segments: 1200, gpu: 1198, rss: '471 MB', slope: '−0.113 MB/segment', vram: '916 MB', error: '0.00 s' },
   ],
   honest: [
-    'GPU speed was only timed informally during development (photographs about 11.6× faster on the card, typography 2.2× slower). No controlled measurement yet, so no speed-up is claimed.',
-    'All GPU evidence comes from one GeForce GTX 1650.',
+    'GPU speed was measured on one machine (a GTX 1650 laptop, three repeats). Other GPUs will give other numbers.',
+    'All real-GPU evidence comes from that one GeForce GTX 1650 (plus Mesa llvmpipe, a software OpenGL).',
     'The long renders used a synthetic fixture, not real footage.',
   ],
 };

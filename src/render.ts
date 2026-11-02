@@ -1,7 +1,7 @@
 import {
   site, lanes, commits, numbers, pipeline, workBullets, atlasStages, atlasRails, voicePillars,
   archive, papers, msc, credentials, evidence, skills, awards, community, channels,
-  voicePassport, voiceThemes, projectById, vtv,
+  voicePassport, voiceThemes, projectById, vtv, saa, careerOs, autrad,
   type Commit, type Lane,
 } from './data';
 
@@ -141,8 +141,13 @@ function nav() {
       <a href="#terminal" data-mode-link="terminal">Terminal</a>
       <a href="#explorer" data-mode-link="explorer">Explorer</a>
       <a href="#world" data-mode-link="world">World</a>
+      <div class="world-pop" data-world-pop hidden role="dialog" aria-label="Choose a view of Rajesh World">
+        <p class="wp-t">Rajesh World · now in 3D</p>
+        <div class="wp-b"><a href="#world" data-mode-link="world" data-world-view="iso">Isometric</a><a href="#world-3p" data-mode-link="world" data-world-view="3p">3rd person</a><a href="#world-1p" data-mode-link="world" data-world-view="1p">1st person</a></div>
+      </div>
     </nav>
     <div class="top-actions">
+      <a class="btn sm vote4me-btn" href="${base('Vote4me/')}" title="Walk the campus in 3D and vote Rajesh for PGT School of Informatics Rep"><span class="v4-dot" aria-hidden="true"></span>Vote4me</a>
       <button class="btn btn-solid sm hire-btn" type="button" data-hire>Work with me</button>
       <button class="btn-ghost kbd-btn" type="button" data-open-palette aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
       <button class="btn-ghost theme-btn" type="button" data-theme-toggle aria-label="Switch colour theme"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 0 1 0 14z"/></svg></button>
@@ -562,7 +567,7 @@ function contact() {
       <div class="mail">
         <a class="mail-addr" href="mailto:${site.email}">${site.email}</a>
         <button type="button" class="btn btn-solid sm" data-copy="${site.email}">Copy email</button>
-        ${site.cvPath ? `<a class="btn btn-line sm" href="${base(site.cvPath)}">Download CV</a>` : ''}
+        ${site.cvPath ? `<a class="btn btn-line sm" href="${base(site.cvPath)}" target="_blank" rel="noopener">Download CV</a>` : ''}
       </div>
       <ul class="remotes">${rows.map(([k, v, h]) => `<li><span class="rm-k">${k}</span><a href="${esc(h)}" target="_blank" rel="noopener">${esc(v)} <span aria-hidden="true">↗</span></a></li>`).join('')}</ul>
     </div>
@@ -578,7 +583,7 @@ function ways() {
     ['web', '#top', 'Web', 'The full story, top to bottom. You are here.', 'scroll'],
     ['terminal', '#terminal', 'Terminal', 'A working shell. Type <code>open lexora</code> or <code>neofetch</code>.', 'press `'],
     ['explorer', '#explorer', 'Explorer', 'Browse the portfolio as a repository, folder by folder.', 'file tree'],
-    ['world', '#world', 'World', 'Walk around an island of my work. Find all six quests.', 'WASD · E'],
+    ['world', '#world', 'World', 'An island of my work. Walk it as a map, or step inside in first or third person.', 'WASD · E · V'],
   ];
   const art: Record<string, string> = {
     web: '<rect x="8" y="10" width="64" height="44" rx="4"/><path d="M16 22h30M16 30h44M16 38h36M16 46h24"/>',
@@ -597,6 +602,14 @@ function ways() {
         <span class="way-key">${key}</span>
       </a>`).join('')}
     </div>
+    <div class="world-views" data-world-views>
+      <p class="wv-k"><span class="wv-new">new</span> Rajesh World has three views</p>
+      <div class="wv-btns">
+        <a href="#world" data-mode-link="world" data-world-view="iso"><b>Isometric</b><span>the whole island as a map</span></a>
+        <a href="#world-3p" data-mode-link="world" data-world-view="3p"><b>Third person</b><span>walk it with your avatar</span></a>
+        <a href="#world-1p" data-mode-link="world" data-world-view="1p"><b>First person</b><span>through your own eyes</span></a>
+      </div>
+    </div>
   </section>`;
 }
 
@@ -613,7 +626,7 @@ function vtvSection() {
           <h2 id="vtv-h" class="h2 product-name">Voice-to-Video</h2>
           <p class="tagline">Say it, and see it. Then make it render fast, and prove it renders right.</p>
         </div>
-        <div class="product-links">${vtv.repo.public ? ext(vtv.repo.url, 'GitHub', 'btn btn-line') : '<span class="status status-wip">Code private for now</span>'}<a class="btn btn-solid" href="${B}papers/voice-to-video-rendering.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a></div>
+        <div class="product-links">${vtv.repo.public ? ext(vtv.repo.url, 'GitHub', 'btn btn-line') : '<span class="status status-wip">Code private for now</span>'}<a class="btn btn-solid" href="${B}papers/voice-to-video-rendering.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a><a class="btn btn-line" href="${B}papers/voice-to-video-technical-report.pdf" target="_blank" rel="noopener">Technical report</a></div>
       </div>
       <p class="prose narrow">${esc(proj.summary)}</p>
       <ol class="vtv-pipe" aria-label="Pipeline">${vtv.pipeline.map((p, i) => `<li><span class="vp-n">${String(i + 1).padStart(2, '0')}</span><b>${esc(p.name)}</b><span>${esc(p.detail)}</span></li>`).join('')}</ol>
@@ -671,6 +684,13 @@ function vtvSection() {
         </div>
       </div>
 
+      <h3 class="h3">How much faster the GPU is</h3>
+      <div class="table-scroll"><table class="vtv-table">
+        <thead><tr><th>Content</th><th>CPU painter</th><th>GPU painter</th><th>GPU / CPU</th><th>x264 encode</th></tr></thead>
+        <tbody>${vtv.speed.map(r => `<tr><td>${r.workload}</td><td>${r.cpu} fps</td><td>${r.gpu} fps</td><td><b>${r.ratio}</b></td><td>${r.x264} fps</td></tr>`).join('')}</tbody>
+      </table></div>
+      <p class="fine">1080p on my GTX 1650 laptop, median of three runs. Typography stays on the CPU, which is why segments are routed by content. With photographs on the GPU, x264 becomes the slower half.</p>
+
       <h3 class="h3">Long renders</h3>
       <div class="table-scroll"><table class="vtv-table">
         <thead><tr><th>Video</th><th>Render time</th><th>Segments</th><th>On GPU</th><th>Peak memory</th><th>Memory trend</th><th>Peak VRAM</th><th>Length error</th></tr></thead>
@@ -681,6 +701,179 @@ function vtvSection() {
       <div class="vtv-honest">
         <p class="vd-k">What is not claimed</p>
         <ul class="bullets">${vtv.honest.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
+      </div>
+      <p class="tags">${proj.tech.map(t => `<span>${esc(t)}</span>`).join('')}</p>
+    </div>
+  </section>`;
+}
+
+function saaSection() {
+  const proj = projectById('saa')!;
+  const first = saa.scenarios[0];
+  return `<section class="section product" id="saa" aria-labelledby="saa-h">
+    <div class="wrap">
+      ${eyebrow('ai', 'ai · open source · 2026')}
+      <div class="product-head">
+        <div>
+          <h2 id="saa-h" class="h2 product-name">Salesforce AI Agent</h2>
+          <p class="tagline">An agent runtime for Salesforce, with the safety layer outside the model.</p>
+        </div>
+        <div class="product-links">${ext(saa.repo, 'GitHub', 'btn btn-solid')}<span class="status status-neutral">Open source · MIT</span></div>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p>${esc(proj.summary)}</p>
+          <p>A language model is the reasoning engine, chosen per project from ten providers. Salesforce's own APIs are the execution layer: REST and SOQL, the Metadata API, the Tooling API for Apex, and Bulk API 2.0. Authorization, risk classification and approval sit outside the model, so they cannot be talked around.</p>
+        </div>
+        <dl class="metrics">${saa.numbers.map(n => `<div><dt>${esc(n.k)}</dt><dd>${esc(n.v)}</dd></div>`).join('')}</dl>
+      </div>
+      <ol class="saa-loop" aria-label="The agent loop">${saa.loop.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+
+      <div class="vtv-block" data-saa>
+        <div class="vtv-bhead"><h3 class="h3">Ask it to change something</h3><p class="fine">Pick a request and where it lands. Each answer is what the repository's own risk engine returned for that tool, with its real declaration and the default project policy. Nothing here connects to Salesforce.</p></div>
+        <div class="saa-ctrl">
+          <div class="seg" role="radiogroup" aria-label="Target org">${saa.envs.map((e, i) => `<button type="button" role="radio" aria-checked="${i === 0}" data-saa-env="${e.id}">${esc(e.label)}</button>`).join('')}</div>
+          <div class="eq-tabs" role="radiogroup" aria-label="Request">${saa.scenarios.map((s, i) => `<button type="button" role="radio" class="chip${i === 0 ? ' is-on' : ''}" aria-checked="${i === 0}" data-saa-req="${s.id}">${esc(s.label)}</button>`).join('')}</div>
+        </div>
+        <div class="saa-out" data-saa-out aria-live="polite"><p class="fine">${esc(first.label)}</p></div>
+      </div>
+
+      <div class="vtv-split">
+        <div>
+          <h3 class="h3">What an approval is bound to</h3>
+          <dl class="saa-bind">${saa.binding.map(b => `<div><dt>${esc(b.k)}</dt><dd>${esc(b.v)}</dd></div>`).join('')}</dl>
+        </div>
+        <div>
+          <h3 class="h3">What it can work on</h3>
+          <ul class="bullets">${saa.subsystems.map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+          <p class="fine">Of the 52 tools, ${saa.tools.map(t => `${t.n} are ${t.risk}`).join(', ').replace(/, ([^,]*)$/, ' and $1')} risk by declaration; the engine starts there and escalates on environment, object, blast radius and deletion.</p>
+        </div>
+      </div>
+
+      <div class="vtv-honest">
+        <p class="vd-k">What is not claimed</p>
+        <ul class="bullets">${saa.honest.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
+      </div>
+      <p class="tags">${proj.tech.map(t => `<span>${esc(t)}</span>`).join('')}</p>
+    </div>
+  </section>`;
+}
+
+function careerOsSection() {
+  const proj = projectById('careeros')!;
+  const c = careerOs;
+  const kind: Record<string, string> = { you: 'Your answer', draft: 'AI draft', need: 'Needs you' };
+  return `<section class="section product" id="careeros" aria-labelledby="cos-h">
+    <div class="wrap">
+      ${eyebrow('ai', 'ai · open source · Sep – Oct 2026')}
+      <div class="product-head">
+        <div>
+          <h2 id="cos-h" class="h2 product-name">Career OS</h2>
+          <p class="tagline">It does the searching and the typing. I do the deciding.</p>
+        </div>
+        <div class="product-links">${ext(c.repo, 'GitHub', 'btn btn-solid')}<span class="status status-neutral">Open source · MIT</span></div>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p>${esc(proj.summary)}</p>
+          <p>Everything runs on my own laptop: a SQLite database, a local web app and a real browser window. The agents use my own AI subscription through Claude Code, Codex or Gemini, never an API key, so the whole thing costs nothing extra to run.</p>
+        </div>
+        <dl class="metrics">${c.numbers.map(n => `<div><dt>${esc(n.k)}</dt><dd>${esc(n.v)}</dd></div>`).join('')}</dl>
+      </div>
+
+      <ol class="atlas-track cos-track" aria-label="How an application moves">${c.stages.map((st, i) => `
+        <li class="a-stage" data-group="${st.you ? 'control' : 'core'}"${st.you ? ' data-you' : ''}>
+          <span class="a-n">${String(i + 1).padStart(2, '0')}${st.you ? ' · you' : ''}</span>
+          <span class="a-name">${esc(st.name)}</span>
+          <span class="a-detail">${esc(st.detail)}</span>
+        </li>`).join('')}
+      </ol>
+
+      <div class="vtv-block" data-cos>
+        <div class="vtv-bhead"><h3 class="h3">Fill a form, then stop</h3><p class="fine">A replay of how the autofill marks a page. Green is something I have already answered, amber is a draft I must read, red is something only I can know. The Submit button is the site’s own, and only a person presses it.</p></div>
+        <div class="cos-form">
+          ${c.form.map((f, i) => `<div class="cos-field" data-kind="${f.kind}" data-i="${i}"><span class="cos-l">${esc(f.label)}</span><span class="cos-v" data-cos-v>—</span><span class="cos-k">${kind[f.kind]}</span></div>`).join('')}
+          <div class="cos-actions">
+            <button type="button" class="btn btn-solid sm" data-cos-fill>Run autofill</button>
+            <button type="button" class="btn btn-line sm" data-cos-submit disabled>Submit</button>
+            <button type="button" class="btn btn-ghost sm" data-cos-reset>Reset</button>
+          </div>
+          <p class="cos-log" data-cos-log aria-live="polite"><span class="p-sign">$</span> Press Run autofill.</p>
+        </div>
+      </div>
+
+      <div class="vtv-split">
+        <div>
+          <h3 class="h3">How it is built</h3>
+          <ul class="bullets">${c.built.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <h3 class="h3">What it teaches</h3>
+          <p class="fine">Every track has five levels: ${c.learn.levels.join(' → ')}.</p>
+          <p class="vd-k cos-k2">Everyone</p>
+          <p class="tags">${c.learn.core.map(t => `<span>${esc(t)}</span>`).join('')}</p>
+          <p class="vd-k cos-k2">By role</p>
+          <p class="tags">${c.learn.roles.map(t => `<span>${esc(t)}</span>`).join('')}</p>
+          <p class="fine">Only free, legally open material is linked: open textbooks, OCW courses, official docs and arXiv papers. My own books stay in my own folder.</p>
+        </div>
+      </div>
+
+      <div class="vtv-honest">
+        <p class="vd-k">What is not claimed</p>
+        <ul class="bullets">${c.honest.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
+      </div>
+      <p class="tags">${proj.tech.map(t => `<span>${esc(t)}</span>`).join('')}</p>
+    </div>
+  </section>`;
+}
+
+function autradSection() {
+  const proj = projectById('autrad')!;
+  const a = autrad;
+  const first = a.versions[0];
+  return `<section class="section product" id="autrad" aria-labelledby="aut-h">
+    <div class="wrap">
+      ${eyebrow('research', 'research · quant · Sep – Oct 2026')}
+      <div class="product-head">
+        <div>
+          <h2 id="aut-h" class="h2 product-name">AuTrad</h2>
+          <p class="tagline">A trading research lab built to say no.</p>
+        </div>
+        <div class="product-links">${ext(a.repo, 'GitHub', 'btn btn-solid')}<span class="status status-neutral">Paper trading only</span></div>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p>${esc(proj.summary)}</p>
+          <p>Most backtests look good because the person running them tried things until one did. AuTrad is built the other way round: decide the test first, write it down, hash it, log everything, and charge every result for the searching that went into it.</p>
+        </div>
+        <dl class="metrics">${a.numbers.map(n => `<div><dt>${esc(n.k)}</dt><dd>${esc(n.v)}</dd></div>`).join('')}</dl>
+      </div>
+
+      <div class="vtv-block">
+        <div class="vtv-bhead"><h3 class="h3">The gate</h3><p class="fine">Strictly in order; the first failure rejects. Only an idea that reaches the end may be considered for capital, and only with my approval.</p></div>
+        <ol class="aut-gate">${a.gate.map((g, i) => `<li><span class="a-n">${String(i + 1).padStart(2, '0')}</span><b>${esc(g.step)}</b><span>${esc(g.rule)}</span></li>`).join('')}</ol>
+      </div>
+
+      <div class="vtv-block" data-aut>
+        <div class="vtv-bhead"><h3 class="h3">Every version, and what it found</h3><p class="fine">Quoted from the repository’s own results, from v0.3 to v1.4. Pick a version.</p></div>
+        <div class="eq-tabs" role="radiogroup" aria-label="Version">${a.versions.map((v, i) => `<button type="button" role="radio" class="chip${i === 0 ? ' is-on' : ''}" aria-checked="${i === 0}" data-aut-v="${i}">${esc(v.v)}</button>`).join('')}</div>
+        <div class="saa-out" data-aut-out aria-live="polite"><p class="saa-k">Question</p><p>${esc(first.q)}</p><p class="saa-k">Finding</p><p class="aut-a">${esc(first.a)}</p></div>
+      </div>
+
+      <div class="vtv-split">
+        <div>
+          <h3 class="h3">Rules against fooling myself</h3>
+          <dl class="saa-bind">${a.rules.map(r => `<div><dt>${esc(r.k)}</dt><dd>${esc(r.v)}</dd></div>`).join('')}</dl>
+        </div>
+        <div>
+          <h3 class="h3">The one rule still running</h3>
+          <p class="prose">${esc(a.forward)}</p>
+        </div>
+      </div>
+
+      <div class="vtv-honest">
+        <p class="vd-k">What is not claimed</p>
+        <ul class="bullets">${a.honest.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
       </div>
       <p class="tags">${proj.tech.map(t => `<span>${esc(t)}</span>`).join('')}</p>
     </div>
@@ -765,7 +958,7 @@ function interactions() {
   const groups: [string, [string, string][]][] = [
     ['Ways in', [['world', 'Enter Zohaib World'], ['terminal', 'Open the terminal'], ['explorer', 'Browse as a repository'], ['palette', 'Command palette (⌘K)']]],
     ['Career graph', [['checkout-ai', 'git checkout ai'], ['checkout-enterprise', 'git checkout enterprise'], ['head', 'Jump to HEAD']]],
-    ['Case studies', [['pipe', 'Replay the pre-release catch'], ['atlas-high', 'Run a high-risk Atlas task'], ['flow-server', 'Send a file to a server feature'], ['vp-approve', 'Approve a Voice Passport request'], ['vtv-plug', 'Pull the plug on a render'], ['vtv-nvenc', 'See why NVENC caps at 1.3×']]],
+    ['Case studies', [['pipe', 'Replay the pre-release catch'], ['atlas-high', 'Run a high-risk Atlas task'], ['flow-server', 'Send a file to a server feature'], ['vp-approve', 'Approve a Voice Passport request'], ['vtv-plug', 'Pull the plug on a render'], ['vtv-nvenc', 'See why NVENC caps at 1.3×'], ['saa-prod', 'Send a deployment to a production org'], ['cos-fill', 'Watch Career OS fill a form'], ['aut-v11', 'See the look-ahead AuTrad caught in itself']]],
     ['Evidence', [['trace', 'Trace “Solidity” to its evidence'], ['vault-azure', 'Search the vault for Azure'], ['paper', 'Open a paper summary'], ['vtv-paper', 'Read the rendering paper (PDF)'], ['sem1', 'Highlight this term’s modules']]],
     ['Small things', [['theme', 'Toggle light / dark'], ['copy-email', 'Copy my email'], ['secret', 'Look for the secret']]],
   ];
@@ -819,7 +1012,7 @@ function overlays() {
         <a class="btn btn-line sm" href="mailto:${site.email}">Email</a>
         ${ext(site.links.linkedin, 'LinkedIn', 'btn btn-line sm')}
         ${ext(site.links.github, 'GitHub', 'btn btn-line sm')}
-        ${site.cvPath ? `<a class="btn btn-line sm" href="${base(site.cvPath)}">Download CV</a>` : ''}
+        ${site.cvPath ? `<a class="btn btn-line sm" href="${base(site.cvPath)}" target="_blank" rel="noopener">Download CV</a>` : ''}
       </div>
     </div>
   </div>
@@ -829,5 +1022,5 @@ function overlays() {
 }
 
 export function renderApp() {
-  return `${nav()}<main id="main">${hero()}${shortlog()}${ways()}${work()}${lexora()}${atlas()}${ownvoicz()}${vtvSection()}${voicePassportSection()}${archiveSection()}${research()}${now()}${stack()}${vault()}${recognition()}${explain()}${interactions()}${contact()}</main>${overlays()}`;
+  return `${nav()}<main id="main">${hero()}${shortlog()}${ways()}${work()}${lexora()}${atlas()}${ownvoicz()}${vtvSection()}${saaSection()}${careerOsSection()}${autradSection()}${voicePassportSection()}${archiveSection()}${research()}${now()}${stack()}${vault()}${recognition()}${explain()}${interactions()}${contact()}</main>${overlays()}`;
 }
